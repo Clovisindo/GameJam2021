@@ -67,6 +67,34 @@ public class HealthManager : MonoBehaviour
                 hearts[i].enabled = false;
             }
         }
+        //attack
+        if (attack > numOfAttackPower)
+        {
+            attack = numOfAttackPower;
+        }
+        for (int i = 0; i < attacks.Length; i++)
+        {
+            // este if define cuando el corazon carga la imagen rellena o no, segun la cantidad de vida
+            if (i < attack)
+            {
+                attacks[i].sprite = fullAttack;
+            }
+            else
+            {
+                attacks[i].sprite = emptyAttack;
+            }
+
+            // controla el numero de corazones maximos que se muestran( los previamente creados en los objetos)
+            //mejora para esto seria instanciarlo desde el iniciador
+            if (i < numOfAttackPower)
+            {
+                attacks[i].enabled = true;
+            }
+            else
+            {
+                attacks[i].enabled = false;
+            }
+        }
     }
 
     private void Update()
@@ -105,7 +133,7 @@ public class HealthManager : MonoBehaviour
         {
             attack = numOfAttackPower;
         }
-        for (int i = 0; i < hearts.Length; i++)
+        for (int i = 0; i < attacks.Length; i++)
         {
             // este if define cuando el corazon carga la imagen rellena o no, segun la cantidad de vida
             if (i < attack)

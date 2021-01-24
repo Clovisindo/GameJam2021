@@ -44,9 +44,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
+  attack: 1
   numOfHearts: 3
+  numOfAttackPower: 1
   UICanvas: {fileID: 0}
-  hearts: []
+  hearts:
+  - {fileID: 4034152550594974174, guid: 2117cbbf76027824887bc2a929b4b69a, type: 3}
+  - {fileID: 5000269246083908211, guid: 0b0bc56fe7d03d1499da3559e1f8c0fe, type: 3}
+  - {fileID: 5215602620675095595, guid: 36d166be1fae89c4f9ee45a1f8da7bfb, type: 3}
   fullHeart: {fileID: 21300000, guid: 4f89ca006a55895479cf8647d65d22d8, type: 3}
   halfHeart: {fileID: 21300000, guid: 95fcaf156d145744f887a4f499f0f670, type: 3}
   emptyHeart: {fileID: 21300000, guid: 3914b887fa9960f46aa87cf9e8cce6d4, type: 3}
+  attacks:
+  - {fileID: 1587379582779621863, guid: 8497b4d97f211bf4993ea5a461e3ece4, type: 3}
+  - {fileID: 8951325842775196306, guid: 19466f54166086945853f90bffbf89a1, type: 3}
+  - {fileID: 6666344150103594552, guid: e734c0b29f4effb42902eeda65af9a6d, type: 3}
+  fullAttack: {fileID: 21300000, guid: f5942246406a2ff4f91fd8d94b0a7c7f, type: 3}
+  emptyAttack: {fileID: 0}

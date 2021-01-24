@@ -49,13 +49,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cffe843a4ff059941987bdddddee4f0c, type: 3}
   - {fileID: 21300000, guid: f4372cb54cb8dc04fbabef824c1d8f92, type: 3}
   cardBack: {fileID: 21300000, guid: d4444774d654ea9418f3fed22c12dbb6, type: 3}
-  cards:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  cards: []
+  CanvasCardsPuzzle: {fileID: 2390453711184509222, guid: 974202a612287e74d83ed34228f82069, type: 3}
   gameTime: {fileID: 0}
+  player: {fileID: 4843814201679523422, guid: dbd6ce8b62b628b47ab8f84bf7eef04c, type: 3}
+  ini_Player: {fileID: 3352289824591936408, guid: e098b18cf103c874d820d0160f5b3c96, type: 3}
