@@ -6,25 +6,51 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
-    public Sprite[] cardFace;
-    public Sprite cardBack;
-    public GameObject[] cards;
-    public GameObject gameTime;
+	public Sprite[] cardFace;
+	public Sprite cardBack;
+	public GameObject[] cards;
+	public GameObject CanvasCardsPuzzle;
+	public GameObject gameTime;
 
-    private bool _init = false;
-    private int _matches = 4;
+	public static GameManager instance = null;
+	public Player player;
+	public GameObject ini_Player;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (!_init)// volver a iniciar la partida ToDo: cargar fases
-            initializeCards();
+	private bool _init = false;
+	private int _matches = 4;
 
-        if (Input.GetMouseButtonUp(0))// cuando clicas comprueba las cartas
-            checkCards();
 
-    }
-		void initializeCards()
+	// Start is called before the first frame update
+	void Awake()
+	{
+		if (instance == null)
+		{
+			instance = this;
+		}
+		else if (instance != null)
+		{
+			Destroy(gameObject);
+		}
+
+		//DontDestroyOnLoad(gameObject);
+		player = Instantiate(player, ini_Player.transform.position, Quaternion.identity);
+		//instantiate array cards in canvas
+		Instantiate(CanvasCardsPuzzle, CanvasCardsPuzzle.transform.position, Quaternion.identity);
+		cards = GameObject.FindGameObjectsWithTag("Card");
+		gameTime = GameObject.FindGameObjectWithTag("GameTime");
+
+	}
+	// Update is called once per frame
+	void Update()
+	{
+		if (!_init)// volver a iniciar la partida ToDo: cargar fases
+			initializeCards();
+
+		if (Input.GetMouseButtonUp(0))// cuando clicas comprueba las cartas
+			checkCards();
+
+	}
+	void initializeCards()
 	{
 		for (int id = 0; id < 2; id++)//ToDo: hacer array dinamico segun el levelGenerator
 		{
@@ -108,7 +134,10 @@ public class GameManager : MonoBehaviour
 
 	public void reGame()
 	{
+		//instance = null;
+		//DestroyImmediate(gameObject);
 		SceneManager.LoadScene("gameScene");
+		//this.Awake();
 	}
 
 	public void reMenu()

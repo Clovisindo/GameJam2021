@@ -17,19 +17,19 @@ public class CardScript : MonoBehaviour
     private Sprite _cardBack;//dorso carta
     private Sprite _cardFace;//carta
 
-    private GameObject _manager;//manager
+    //public GameObject _manager;//manager
 
     // Start is called before the first frame update
     void Start()
     {
         _state = 1;
-        _manager = GameObject.FindGameObjectWithTag("Manager");
+        //_manager = GameObject.FindGameObjectWithTag("Manager");
     }
 
     public void setupGraphics()// inicializa cada carta desde el GameManager( se hace cada turno??)
     {
-        _cardBack = _manager.GetComponent<GameManager>().getCardBack();
-        _cardFace = _manager.GetComponent<GameManager>().getCardFace(_cardValue);
+        _cardBack = GameManager.instance.GetComponent<GameManager>().getCardBack();
+        _cardFace = GameManager.instance.GetComponent<GameManager>().getCardFace(_cardValue);
 
         flipcard();
     }
@@ -68,7 +68,7 @@ public class CardScript : MonoBehaviour
     {
         StartCoroutine(pause());
     }
-        IEnumerator pause()
+    IEnumerator pause()
     {
         yield return new WaitForSeconds(0.2F);
         if (_state == 0)
