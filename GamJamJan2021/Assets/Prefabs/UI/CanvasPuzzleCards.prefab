@@ -112,7 +112,6 @@ GameObject:
   - component: {fileID: 5502986254241579643}
   - component: {fileID: 5502986254241579640}
   - component: {fileID: 5502986254241579641}
-  - component: {fileID: 5502986254241579646}
   m_Layer: 5
   m_Name: card (1)
   m_TagString: Card
@@ -220,7 +219,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5502986254241579646}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CardScript, Assembly-CSharp
         m_MethodName: flipcard
         m_Mode: 1
@@ -231,22 +230,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5502986254241579646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5502986254241579644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77445fc7a7309604d96a20f913eef6b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _state: 0
-  _cardValue: 0
-  _initialized: 0
+        m_CallState: 0
 --- !u!1 &5502986254393524121
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +243,6 @@ GameObject:
   - component: {fileID: 5502986254393524116}
   - component: {fileID: 5502986254393524117}
   - component: {fileID: 5502986254393524122}
-  - component: {fileID: 5502986254393524123}
   m_Layer: 5
   m_Name: card (5)
   m_TagString: Card
@@ -367,7 +350,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5502986254393524123}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CardScript, Assembly-CSharp
         m_MethodName: flipcard
         m_Mode: 1
@@ -378,22 +361,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5502986254393524123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5502986254393524121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77445fc7a7309604d96a20f913eef6b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _state: 0
-  _cardValue: 0
-  _initialized: 0
+        m_CallState: 0
 --- !u!1 &5502986254645804034
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,7 +470,6 @@ GameObject:
   - component: {fileID: 5502986254941498777}
   - component: {fileID: 5502986254941498782}
   - component: {fileID: 5502986254941498783}
-  - component: {fileID: 5502986254941498780}
   m_Layer: 5
   m_Name: card (7)
   m_TagString: Card
@@ -610,7 +577,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5502986254941498780}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CardScript, Assembly-CSharp
         m_MethodName: flipcard
         m_Mode: 1
@@ -621,22 +588,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5502986254941498780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5502986254941498754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77445fc7a7309604d96a20f913eef6b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _state: 0
-  _cardValue: 0
-  _initialized: 0
+        m_CallState: 0
 --- !u!1 &5502986255273786197
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,7 +639,6 @@ GameObject:
   - component: {fileID: 5502986255396427204}
   - component: {fileID: 5502986255396427205}
   - component: {fileID: 5502986255396427210}
-  - component: {fileID: 5502986255396427211}
   m_Layer: 5
   m_Name: card (3)
   m_TagString: Card
@@ -795,7 +746,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5502986255396427211}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CardScript, Assembly-CSharp
         m_MethodName: flipcard
         m_Mode: 1
@@ -806,22 +757,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5502986255396427211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5502986255396427209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77445fc7a7309604d96a20f913eef6b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _state: 0
-  _cardValue: 0
-  _initialized: 0
+        m_CallState: 0
 --- !u!1 &5502986255774681463
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,7 +770,6 @@ GameObject:
   - component: {fileID: 5502986255774681458}
   - component: {fileID: 5502986255774681459}
   - component: {fileID: 5502986255774681456}
-  - component: {fileID: 5502986255774681457}
   m_Layer: 5
   m_Name: card
   m_TagString: Card
@@ -942,7 +877,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5502986255774681457}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CardScript, Assembly-CSharp
         m_MethodName: flipcard
         m_Mode: 1
@@ -953,22 +888,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5502986255774681457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5502986255774681463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77445fc7a7309604d96a20f913eef6b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _state: 0
-  _cardValue: 0
-  _initialized: 0
+        m_CallState: 0
 --- !u!1 &5502986255795172832
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,7 +901,6 @@ GameObject:
   - component: {fileID: 5502986255795172863}
   - component: {fileID: 5502986255795172860}
   - component: {fileID: 5502986255795172861}
-  - component: {fileID: 5502986255795172834}
   m_Layer: 5
   m_Name: card (6)
   m_TagString: Card
@@ -1089,7 +1008,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5502986255795172834}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CardScript, Assembly-CSharp
         m_MethodName: flipcard
         m_Mode: 1
@@ -1100,22 +1019,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5502986255795172834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5502986255795172832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77445fc7a7309604d96a20f913eef6b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _state: 0
-  _cardValue: 0
-  _initialized: 0
+        m_CallState: 0
 --- !u!1 &5502986255927197373
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,7 +1032,6 @@ GameObject:
   - component: {fileID: 5502986255927197368}
   - component: {fileID: 5502986255927197369}
   - component: {fileID: 5502986255927197374}
-  - component: {fileID: 5502986255927197375}
   m_Layer: 5
   m_Name: card (2)
   m_TagString: Card
@@ -1236,7 +1139,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5502986255927197375}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CardScript, Assembly-CSharp
         m_MethodName: flipcard
         m_Mode: 1
@@ -1247,22 +1150,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5502986255927197375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5502986255927197373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77445fc7a7309604d96a20f913eef6b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _state: 0
-  _cardValue: 0
-  _initialized: 0
+        m_CallState: 0
 --- !u!1 &5502986255955351508
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,7 +1163,6 @@ GameObject:
   - component: {fileID: 5502986255955351507}
   - component: {fileID: 5502986255955351504}
   - component: {fileID: 5502986255955351505}
-  - component: {fileID: 5502986255955351510}
   m_Layer: 5
   m_Name: card (4)
   m_TagString: Card
@@ -1383,7 +1270,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5502986255955351510}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CardScript, Assembly-CSharp
         m_MethodName: flipcard
         m_Mode: 1
@@ -1394,19 +1281,4 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5502986255955351510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5502986255955351508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77445fc7a7309604d96a20f913eef6b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _state: 0
-  _cardValue: 0
-  _initialized: 0
+        m_CallState: 0

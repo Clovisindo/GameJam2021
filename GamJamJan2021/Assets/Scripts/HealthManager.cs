@@ -34,6 +34,7 @@ public class HealthManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+
      
         Init();
     }

@@ -33,17 +33,29 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Curar al jugador
     /// </summary>
-    /// <param name="heal"></param>
+    /// <param name="heal">pasar el numero en valor absoluto</param>
     public void HealthDamage(int heal)
     {
         playerHealth += heal;
         UpdatePlayerHealth();
     }
-
+    /// <summary>
+    /// Aplicar subida de daño al jugador
+    /// </summary>
+    /// <param name="attUp">pasar en valor absoluto</param>
     public void attackUp(int attUp)
     {
         playerAttack += attUp;
-
+        UpdatePlayerAttack();
+    }
+    /// <summary>
+    /// Aplicar la bajada de daño al jugador
+    /// </summary>
+    /// <param name="attDown">pasar en valor absoluto</param>
+    public void attackDown(int attDown)
+    {
+        playerAttack -= attDown;
+        UpdatePlayerAttack();
     }
 
     public void UpdatePlayerHealth()

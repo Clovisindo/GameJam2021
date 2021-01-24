@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public enum EnumTypeCards
 {
-    BuffAttackPlayer,
-    DebuffAttackPlayer,
-    BuffLifePlayer,
-    DebuffLifePlayer
-}
+    cBuffAttackPlayer = 0,
+    cDebuffAttackPlayer = 1,
+    cBuffLifePlayer = 2,
+    cDebuffLifePlayer = 3
+};
