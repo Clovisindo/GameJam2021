@@ -3,11 +3,11 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
+using System;
 
 public class GameManager : MonoBehaviour
 {
-	public Sprite[] cardFace;
-	public Sprite cardBack;
 	public GameObject[] cards;
 	public GameObject CanvasCardsPuzzle;
 	public GameObject gameTime;
@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
 
 	private bool _init = false;
 	private int _matches = 4;
-
 
 	// Start is called before the first frame update
 	void Awake()
@@ -38,10 +37,10 @@ public class GameManager : MonoBehaviour
 		Instantiate(CanvasCardsPuzzle, CanvasCardsPuzzle.transform.position, Quaternion.identity);
 		cards = GameObject.FindGameObjectsWithTag("Card");
 		gameTime = GameObject.FindGameObjectWithTag("GameTime");
-
 	}
-	// Update is called once per frame
-	void Update()
+
+    // Update is called once per frame
+    void Update()
 	{
 		if (!_init)// volver a iniciar la partida ToDo: cargar fases
 			initializeCards();
@@ -50,25 +49,45 @@ public class GameManager : MonoBehaviour
 			checkCards();
 
 	}
-	void initializeCards()
+    //void initializeCards()
+    //{
+    //    AssignCardsPuzzle(cards);
+    //    for (int id = 0; id < 2; id++)//la segunda vuelta para asegurar dos de cada carta
+    //    {
+    //        for (int i = 1; i < NumberTypeOfCards + 1; i++)//cuenta 1 vuelta de carta, bucle por numero total de cartas distintas
+    //        {
+
+    //            bool test = false;
+    //            int choice = 0;
+    //            while (!test)//inicializa las cartas de forma aleatoria en cada posicion
+    //            {
+    //                choice = UnityEngine.Random.Range(0, cards.Length);
+    //                test = !(cards[choice].GetComponent<CardScript>().initialized);//busca hasta que encuentra una carta sin inicializar
+    //            }
+    //            cards[choice].GetComponent<CardScript>().cardValue = i;//ToDo: asignar de otra forma
+    //            cards[choice].GetComponent<CardScript>().initialized = true;
+    //        }
+    //    }
+
+    //    foreach (GameObject c in cards)// carga las texturas de cada carta ToDo: cargar aqui las clases propias de cada carta
+    //        c.GetComponent<CardScript>().setupGraphics();
+
+    //    if (!_init)
+    //        _init = true;
+    //}
+
+    void initializeCards()
 	{
-		for (int id = 0; id < 2; id++)//ToDo: hacer array dinamico segun el levelGenerator
-		{
-			for (int i = 1; i < 5; i++)
-			{
-
-				bool test = false;
-				int choice = 0;
-				while (!test)//inicializa las cartas de forma aleatoria en cada posicion
-				{
-					choice = Random.Range(0, cards.Length);
-					test = !(cards[choice].GetComponent<CardScript>().initialized);
-				}
-				cards[choice].GetComponent<CardScript>().cardValue = i;//ToDo: asignar de otra forma
-				cards[choice].GetComponent<CardScript>().initialized = true;
-			}
-		}
-
+		//Determinar cuantas cartas de cada tipo se hacen
+		int typeCards = 4;
+		int cardsEachType = cards.Length / typeCards;
+		
+			//generamos en secuencias las cartas de cada tipo
+			GenerateCardBuffAttack(cardsEachType);
+			GenerateCardDebuffAttack(cardsEachType);
+			GenerateCardBuffLife(cardsEachType);
+			GenerateCardDebuffLife(cardsEachType);
+		
 		foreach (GameObject c in cards)// carga las texturas de cada carta ToDo: cargar aqui las clases propias de cada carta
 			c.GetComponent<CardScript>().setupGraphics();
 
@@ -76,15 +95,110 @@ public class GameManager : MonoBehaviour
 			_init = true;
 	}
 
-	public Sprite getCardBack()
-	{
-		return cardBack;
+	private void GenerateCardBuffAttack( int numberCards )
+    {
+        for (int j = 0; j < numberCards; j++)
+        {
+			int i = 0;
+			int choice = 0;
+			bool test = false;
+			//por cada tipo de carta, instanciamos dos huecos
+			while (!test)//inicializa las cartas de forma aleatoria en cada posicion
+			{
+				choice = UnityEngine.Random.Range(0, cards.Length);//posicion random del tablero ToDo: hacer por posiciones ya asignada previamente
+                if (cards[choice].GetComponent<CardScript>() != null)
+				{
+					test = false;
+                }
+				else//busca hasta que encuentra una carta del tablero sin inicializar
+				{
+					cards[choice].AddComponent<cBuffAttackPlayer>();// la clase que corresponde
+					cards[choice].GetComponent<Button>().onClick.AddListener(() => cards[choice].GetComponent<cBuffAttackPlayer>().flipcard());
+					cards[choice].GetComponent<cBuffAttackPlayer>().initialized = true;
+					test = true;
+				}
+			}
+		}
 	}
 
-	public Sprite getCardFace(int i)
+	private void GenerateCardDebuffAttack(int numberCards)
 	{
-		return cardFace[i - 1];
+		for (int j = 0; j < numberCards; j++)
+		{
+			int i = 0;
+			int choice = 0;
+			bool test = false;
+			//por cada tipo de carta, instanciamos dos huecos
+			while (!test)//inicializa las cartas de forma aleatoria en cada posicion
+			{
+				choice = UnityEngine.Random.Range(0, cards.Length);//posicion random del tablero ToDo: hacer por posiciones ya asignada previamente
+				if (cards[choice].GetComponent<CardScript>() != null)
+				{
+					test = false;
+				}
+				else//busca hasta que encuentra una carta del tablero sin inicializar
+				{
+					cards[choice].AddComponent<cDebuffAttackPlayer>();// la clase que corresponde
+					cards[choice].GetComponent<Button>().onClick.AddListener(() => cards[choice].GetComponent<cDebuffAttackPlayer>().flipcard());
+					cards[choice].GetComponent<cDebuffAttackPlayer>().initialized = true;
+					test = true;
+				}
+			}
+		}
 	}
+
+	private void GenerateCardBuffLife(int numberCards)
+	{
+		for (int j = 0; j < numberCards; j++)
+		{
+			int i = 0;
+			int choice = 0;
+			bool test = false;
+			//por cada tipo de carta, instanciamos dos huecos
+			while (!test)//inicializa las cartas de forma aleatoria en cada posicion
+			{
+				choice = UnityEngine.Random.Range(0, cards.Length);//posicion random del tablero ToDo: hacer por posiciones ya asignada previamente
+				if (cards[choice].GetComponent<CardScript>() != null)
+				{
+					test = false;
+				}
+				else//busca hasta que encuentra una carta del tablero sin inicializar
+				{
+					cards[choice].AddComponent<cBuffLifePlayer>();// la clase que corresponde
+					cards[choice].GetComponent<Button>().onClick.AddListener(() => cards[choice].GetComponent<cBuffLifePlayer>().flipcard());
+					cards[choice].GetComponent<cBuffLifePlayer>().initialized = true;
+					test = true;
+				}
+			}
+		}
+	}
+
+	private void GenerateCardDebuffLife(int numberCards)
+	{
+		for (int j = 0; j < numberCards; j++)
+		{
+			int i = 0;
+			int choice = 0;
+			bool test = false;
+			//por cada tipo de carta, instanciamos dos huecos
+			while (!test)//inicializa las cartas de forma aleatoria en cada posicion
+			{
+				choice = UnityEngine.Random.Range(0, cards.Length);//posicion random del tablero ToDo: hacer por posiciones ya asignada previamente
+				if (cards[choice].GetComponent<CardScript>() != null)
+				{
+					test = false;
+				}
+				else//busca hasta que encuentra una carta del tablero sin inicializar
+				{
+					cards[choice].AddComponent<cDebuffLifePlayer>();// la clase que corresponde
+					cards[choice].GetComponent<Button>().onClick.AddListener(() => cards[choice].GetComponent<cDebuffLifePlayer>().flipcard());
+					cards[choice].GetComponent<cDebuffLifePlayer>().initialized = true;
+					test = true;
+				}
+			}
+		}
+	}
+
 	/// <summary>
 	/// Levantar la carta
 	/// Si hay dos cartas levantadas, las compara
@@ -119,6 +233,7 @@ public class GameManager : MonoBehaviour
 		{
 			x = 2;//estado que no cambia en ninguna parte,no vuelve a girarse
 			_matches--;
+			cards[c[0]].GetComponent<CardScript>().SpecialEffect();
 			if (_matches == 0)// victoria
 				gameTime.GetComponent<timeScript>().endGame();
 		}
@@ -134,10 +249,7 @@ public class GameManager : MonoBehaviour
 
 	public void reGame()
 	{
-		//instance = null;
-		//DestroyImmediate(gameObject);
 		SceneManager.LoadScene("gameScene");
-		//this.Awake();
 	}
 
 	public void reMenu()

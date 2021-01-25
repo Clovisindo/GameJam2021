@@ -1,36 +1,33 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class CardScript : MonoBehaviour
+public abstract class CardScript : MonoBehaviour
 {
     public static bool DO_NOT = false;// flag
 
+    public EnumTypeCards enumTypeCard ;
+    
     [SerializeField]
-    private int _state;//estado
+    protected int _state;//estado
     [SerializeField]
     private int _cardValue;//valor
     [SerializeField]
     private bool _initialized = false;
 
-    private Sprite _cardBack;//dorso carta
-    private Sprite _cardFace;//carta
+    public Sprite _cardBack;//dorso carta
+    public Sprite _cardFace;//carta
 
-    //public GameObject _manager;//manager
+    UnityAction actionFlipCard;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        _state = 1;
-        //_manager = GameObject.FindGameObjectWithTag("Manager");
-    }
-
+    protected abstract void Awake();
+    
     public void setupGraphics()// inicializa cada carta desde el GameManager( se hace cada turno??)
     {
-        _cardBack = GameManager.instance.GetComponent<GameManager>().getCardBack();
-        _cardFace = GameManager.instance.GetComponent<GameManager>().getCardFace(_cardValue);
-
         flipcard();
     }
 
@@ -68,6 +65,19 @@ public class CardScript : MonoBehaviour
     {
         StartCoroutine(pause());
     }
+
+    public abstract void SpecialEffect();
+
+    //public Sprite getCardBack()
+    //{
+    //    return cardBack;
+    //}
+
+    //public Sprite getCardFace(int i)
+    //{
+    //    return cardFace[i - 1];
+    //}
+
     IEnumerator pause()
     {
         yield return new WaitForSeconds(0.2F);
