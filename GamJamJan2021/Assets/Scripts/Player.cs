@@ -65,6 +65,6 @@ public class Player : MonoBehaviour
 
     public void UpdatePlayerAttack()
     {
-        HealthManager.instance.UpdateUIAttack(playerHealth);
+        HealthManager.instance.UpdateUIAttack(playerAttack);
     }
 }
