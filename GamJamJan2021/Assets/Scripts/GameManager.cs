@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
 			GenerateCardBuffAttack(cardsEachType);
 			GenerateCardDebuffAttack(cardsEachType);
 			GenerateCardBuffLife(cardsEachType);
-			GenerateCardGoblin(cardsEachType);
+			GenerateCardOrc(cardsEachType);
 		
 		foreach (GameObject c in cards)// carga las texturas de cada carta ToDo: cargar aqui las clases propias de cada carta
 			c.GetComponent<CardScript>().setupGraphics();
@@ -186,33 +186,33 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	//private void GenerateCardDebuffLife(int numberCards)
-	//{
-	//	for (int j = 0; j < numberCards; j++)
-	//	{
-	//		int i = 0;
-	//		int choice = 0;
-	//		bool test = false;
-	//		//por cada tipo de carta, instanciamos dos huecos
-	//		while (!test)//inicializa las cartas de forma aleatoria en cada posicion
-	//		{
-	//			choice = UnityEngine.Random.Range(0, cards.Length);//posicion random del tablero ToDo: hacer por posiciones ya asignada previamente
-	//			if (cards[choice].GetComponent<CardScript>() != null)
-	//			{
-	//				test = false;
-	//			}
-	//			else//busca hasta que encuentra una carta del tablero sin inicializar
-	//			{
-	//				cards[choice].AddComponent<cDebuffLifePlayer>();// la clase que corresponde
-	//				cards[choice].GetComponent<Button>().onClick.AddListener(() => cards[choice].GetComponent<cDebuffLifePlayer>().flipcard());
-	//				cards[choice].GetComponent<cDebuffLifePlayer>().initialized = true;
-	//				test = true;
-	//			}
-	//		}
-	//	}
-	//}
+    private void GenerateCardDebuffLife(int numberCards)
+    {
+        for (int j = 0; j < numberCards; j++)
+        {
+            int i = 0;
+            int choice = 0;
+            bool test = false;
+            //por cada tipo de carta, instanciamos dos huecos
+            while (!test)//inicializa las cartas de forma aleatoria en cada posicion
+            {
+                choice = UnityEngine.Random.Range(0, cards.Length);//posicion random del tablero ToDo: hacer por posiciones ya asignada previamente
+                if (cards[choice].GetComponent<CardScript>() != null)
+                {
+                    test = false;
+                }
+                else//busca hasta que encuentra una carta del tablero sin inicializar
+                {
+                    cards[choice].AddComponent<cDebuffLifePlayer>();// la clase que corresponde
+                    cards[choice].GetComponent<Button>().onClick.AddListener(() => cards[choice].GetComponent<cDebuffLifePlayer>().flipcard());
+                    cards[choice].GetComponent<cDebuffLifePlayer>().initialized = true;
+                    test = true;
+                }
+            }
+        }
+    }
 
-	private void GenerateCardGoblin(int numberCards)
+    private void GenerateCardGoblin(int numberCards)
 	{
 		for (int j = 0; j < numberCards; j++)
 		{
@@ -237,6 +237,33 @@ public class GameManager : MonoBehaviour
 			}
 		}
 	}
+
+	private void GenerateCardOrc(int numberCards)
+	{
+		for (int j = 0; j < numberCards; j++)
+		{
+			int i = 0;
+			int choice = 0;
+			bool test = false;
+			//por cada tipo de carta, instanciamos dos huecos
+			while (!test)//inicializa las cartas de forma aleatoria en cada posicion
+			{
+				choice = UnityEngine.Random.Range(0, cards.Length);//posicion random del tablero ToDo: hacer por posiciones ya asignada previamente
+				if (cards[choice].GetComponent<CardScript>() != null)
+				{
+					test = false;
+				}
+				else//busca hasta que encuentra una carta del tablero sin inicializar
+				{
+					cards[choice].AddComponent<cOrcMonster>();// la clase que corresponde
+					cards[choice].GetComponent<Button>().onClick.AddListener(() => cards[choice].GetComponent<cOrcMonster>().flipcard());
+					cards[choice].GetComponent<cOrcMonster>().initialized = true;
+					test = true;
+				}
+			}
+		}
+	}
+
 
 	/// <summary>
 	/// Levantar la carta

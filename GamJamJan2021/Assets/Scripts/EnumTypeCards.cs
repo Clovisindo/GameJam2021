@@ -9,5 +9,6 @@ public enum EnumTypeCards
     cDebuffAttackPlayer = 1,
     cBuffLifePlayer = 2,
     cDebuffLifePlayer = 3,
-    cGoblinMonster = 4
+    cGoblinMonster = 4,
+    cOrcMonster = 5
 };

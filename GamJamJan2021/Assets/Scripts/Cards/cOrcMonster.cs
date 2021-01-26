@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cGoblinMonster : CardScript
+public class cOrcMonster : CardScript
 {
-    public new EnumTypeCards enumTypeCard = EnumTypeCards.cGoblinMonster;
+    public new EnumTypeCards enumTypeCard = EnumTypeCards.cOrcMonster;
     public GameObject enemy;
     public GameObject ini_enemy;
 
     protected override void Awake()
     {
-        _cardFace = Resources.Load<Sprite>("cGoblinMonster") as Sprite;
+        _cardFace = Resources.Load<Sprite>("cOrcMonster") as Sprite;
         _cardBack = Resources.Load<Sprite>("cardDown") as Sprite;
         _state = 1;
         cardValue = (int)enumTypeCard;
         ini_enemy = GameObject.FindGameObjectWithTag("ini_enemy");
-        enemy = Resources.Load<GameObject>("cGoblinMonster") as GameObject;
+        enemy = Resources.Load<GameObject>("cOgre") as GameObject;
         //falta añadir las referencias a enemy e ini_enemy??
 
     }
