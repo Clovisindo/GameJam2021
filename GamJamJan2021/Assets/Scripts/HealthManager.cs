@@ -22,8 +22,6 @@ public class HealthManager : MonoBehaviour
     public Sprite fullAttack;
     public Sprite emptyAttack;
 
-    bool firstCheckUI = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -104,14 +102,13 @@ public class HealthManager : MonoBehaviour
 
     private void Update()
     {
-        //if (UICanvas == null && !firstCheckUI )//ToDo: arreglar ñapa forzando la carga de otra forma o no recargar escenas
-        //{
-        //    UICanvas = GameObject.FindGameObjectWithTag("CanvasUI").GetComponent<Canvas>();
-        //    hearts = Utilities.getAllChildsObjectWithTag<Image>(UICanvas.transform, "LifesUI").ToArray();
-        //    attacks = Utilities.getAllChildsObjectWithTag<Image>(UICanvas.transform, "AttackPowerUI").ToArray();
-
-        //    firstCheckUI = true;
-        //}
+        if (UICanvas == null )//ToDo: arreglar ñapa forzando la carga de otra forma o no recargar escenas
+        {
+            DestroyImmediate(UICanvas);
+            UICanvas = GameObject.FindGameObjectWithTag("CanvasUI").GetComponent<Canvas>();
+            hearts = Utilities.getAllChildsObjectWithTag<Image>(UICanvas.transform, "LifesUI").ToArray();
+            attacks = Utilities.getAllChildsObjectWithTag<Image>(UICanvas.transform, "AttackPowerUI").ToArray();
+        }
         //health
         if (health > numOfHearts)
         {

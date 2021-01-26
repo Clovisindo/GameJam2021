@@ -10,11 +10,14 @@ public class GameManager : MonoBehaviour
 {
 	public GameObject[] cards;
 	public GameObject CanvasCardsPuzzle;
+	private GameObject EditCanvasCard;
 	public GameObject gameTime;
 
 	public static GameManager instance = null;
+	public BoardManager _board;
 	public Player player;
 	public GameObject ini_Player;
+	public Enemy enemy;
 
 	private bool _init = false;
 	private int _matches = 4;
@@ -32,9 +35,10 @@ public class GameManager : MonoBehaviour
 		}
 
 		//DontDestroyOnLoad(gameObject);
+		_board = GetComponent<BoardManager>();
 		player = Instantiate(player, ini_Player.transform.position, Quaternion.identity);
 		//instantiate array cards in canvas
-		Instantiate(CanvasCardsPuzzle, CanvasCardsPuzzle.transform.position, Quaternion.identity);
+		EditCanvasCard = Instantiate(CanvasCardsPuzzle, CanvasCardsPuzzle.transform.position, Quaternion.identity);
 		cards = GameObject.FindGameObjectsWithTag("Card");
 		gameTime = GameObject.FindGameObjectWithTag("GameTime");
 	}
@@ -76,8 +80,17 @@ public class GameManager : MonoBehaviour
     //        _init = true;
     //}
 
-    void initializeCards()
+    public void initializeCards()
 	{
+        if (_board.nextLevel)//ToDo: leer variable next level en boardManager
+        {
+			DestroyImmediate(EditCanvasCard);
+			EditCanvasCard = Instantiate(CanvasCardsPuzzle, CanvasCardsPuzzle.transform.position, Quaternion.identity);
+			cards = GameObject.FindGameObjectsWithTag("Card");
+			gameTime = GameObject.FindGameObjectWithTag("GameTime");
+			_matches = 4; //ToDo: gestionar toda la logica de asignar la dificultad
+			_board.nextLevel = false;
+		}
 		//Determinar cuantas cartas de cada tipo se hacen
 		int typeCards = 4;
 		int cardsEachType = cards.Length / typeCards;
@@ -86,7 +99,7 @@ public class GameManager : MonoBehaviour
 			GenerateCardBuffAttack(cardsEachType);
 			GenerateCardDebuffAttack(cardsEachType);
 			GenerateCardBuffLife(cardsEachType);
-			GenerateCardDebuffLife(cardsEachType);
+			GenerateCardGoblin(cardsEachType);
 		
 		foreach (GameObject c in cards)// carga las texturas de cada carta ToDo: cargar aqui las clases propias de cada carta
 			c.GetComponent<CardScript>().setupGraphics();
@@ -173,7 +186,33 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	private void GenerateCardDebuffLife(int numberCards)
+	//private void GenerateCardDebuffLife(int numberCards)
+	//{
+	//	for (int j = 0; j < numberCards; j++)
+	//	{
+	//		int i = 0;
+	//		int choice = 0;
+	//		bool test = false;
+	//		//por cada tipo de carta, instanciamos dos huecos
+	//		while (!test)//inicializa las cartas de forma aleatoria en cada posicion
+	//		{
+	//			choice = UnityEngine.Random.Range(0, cards.Length);//posicion random del tablero ToDo: hacer por posiciones ya asignada previamente
+	//			if (cards[choice].GetComponent<CardScript>() != null)
+	//			{
+	//				test = false;
+	//			}
+	//			else//busca hasta que encuentra una carta del tablero sin inicializar
+	//			{
+	//				cards[choice].AddComponent<cDebuffLifePlayer>();// la clase que corresponde
+	//				cards[choice].GetComponent<Button>().onClick.AddListener(() => cards[choice].GetComponent<cDebuffLifePlayer>().flipcard());
+	//				cards[choice].GetComponent<cDebuffLifePlayer>().initialized = true;
+	//				test = true;
+	//			}
+	//		}
+	//	}
+	//}
+
+	private void GenerateCardGoblin(int numberCards)
 	{
 		for (int j = 0; j < numberCards; j++)
 		{
@@ -190,9 +229,9 @@ public class GameManager : MonoBehaviour
 				}
 				else//busca hasta que encuentra una carta del tablero sin inicializar
 				{
-					cards[choice].AddComponent<cDebuffLifePlayer>();// la clase que corresponde
-					cards[choice].GetComponent<Button>().onClick.AddListener(() => cards[choice].GetComponent<cDebuffLifePlayer>().flipcard());
-					cards[choice].GetComponent<cDebuffLifePlayer>().initialized = true;
+					cards[choice].AddComponent<cGoblinMonster>();// la clase que corresponde
+					cards[choice].GetComponent<Button>().onClick.AddListener(() => cards[choice].GetComponent<cGoblinMonster>().flipcard());
+					cards[choice].GetComponent<cGoblinMonster>().initialized = true;
 					test = true;
 				}
 			}
@@ -235,7 +274,11 @@ public class GameManager : MonoBehaviour
 			_matches--;
 			cards[c[0]].GetComponent<CardScript>().SpecialEffect();
 			if (_matches == 0)// victoria
+			{
+				x = 0;
 				gameTime.GetComponent<timeScript>().endGame();
+				_board.NextLevel();
+			}
 		}
 
 

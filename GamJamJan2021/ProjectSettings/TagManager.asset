@@ -9,6 +9,9 @@ TagManager:
   - GameTime
   - LifesUI
   - AttackPowerUI
+  - CanvasUI
+  - ini_enemy
+  - eGoblin
   layers:
   - Default
   - TransparentFX
