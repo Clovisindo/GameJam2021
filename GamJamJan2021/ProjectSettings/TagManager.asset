@@ -12,6 +12,7 @@ TagManager:
   - CanvasUI
   - ini_enemy
   - eGoblin
+  - nextLevelDoor
   layers:
   - Default
   - TransparentFX
