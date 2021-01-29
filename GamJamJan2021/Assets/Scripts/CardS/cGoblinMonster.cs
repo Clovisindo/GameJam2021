@@ -8,6 +8,8 @@ public class cGoblinMonster : CardScript
     public GameObject enemy;
     public GameObject ini_enemy;
 
+    public AudioClip footSteps;
+
     protected override void Awake()
     {
         _cardFace = Resources.Load<Sprite>("cGoblinMonster") as Sprite;
@@ -16,12 +18,13 @@ public class cGoblinMonster : CardScript
         cardValue = (int)enumTypeCard;
         ini_enemy = GameObject.FindGameObjectWithTag("ini_enemy");
         enemy = Resources.Load<GameObject>("cGoblinMonster") as GameObject;
+        footSteps = Resources.Load<AudioClip>("boots-leather-step-01");
 
-        
     }
 
     public override void SpecialEffect()
     {
+        SoundManager.instance.PlaySingle(footSteps);
         Instantiate(enemy, ini_enemy.transform.position, Quaternion.identity);
         GameManager.instance.UpdateMonsterKilled();//sumamos los monstruos matados
     }

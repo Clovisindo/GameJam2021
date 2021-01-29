@@ -20,8 +20,11 @@ public class GameManager : MonoBehaviour
 	[NonSerialized] public Enemy enemy;
 	public GameObject ini_enemy;
 	public eLichBoss finalBoss;
+	public GameObject minionFinalBoss;
 	[NonSerialized] public GameObject _doorNextLevel;
 	public GameObject ini_DoorNextLevel;
+
+	public AudioClip flipCard;
 
 	//parametros que definen de dificultad
 	private int playerAttack;
@@ -119,7 +122,12 @@ public class GameManager : MonoBehaviour
 			_board.nextLevel = false;
             if (_board.FinalBoss)
             {
+				SoundManager.instance.musicSource.Stop();
+				SoundManager.instance.musicSource.clip = Resources.Load<AudioClip>("06_EscapingTheDevil");
+				SoundManager.instance.musicSource.Play();
 				finalBoss = Instantiate(finalBoss, ini_enemy.transform.position, Quaternion.identity);
+				minionFinalBoss = Instantiate(minionFinalBoss,new Vector2(ini_enemy.transform.position.x + 30, ini_enemy.transform.position.y), Quaternion.identity);
+				Instantiate(minionFinalBoss, new Vector2(ini_enemy.transform.position.x -30, ini_enemy.transform.position.y), Quaternion.identity);
 				finalBoss.SetLifeLich(NCardsLichPhylacteries / 2);
 			}
 		}
@@ -345,6 +353,7 @@ public class GameManager : MonoBehaviour
 	/// </summary>
 	void checkCards()
 	{
+		SoundManager.instance.PlaySingle(flipCard);
 		List<int> c = new List<int>();//lista donde se insertar las dos cartas a comparar
 
 		//ToDo: convertir a un metodo findCard
