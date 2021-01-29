@@ -77,6 +77,13 @@ public static class Utilities
             return Enum.GetValues(typeof(T)).Cast<T>();
         }
     }
+
+    public static bool Between(this int num, int lower, int upper, bool inclusive = false)
+    {
+        return inclusive
+            ? lower <= num && num <= upper
+            : lower < num && num < upper;
+    }
 }
 
 public static class Helper

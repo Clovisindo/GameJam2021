@@ -27,8 +27,11 @@ public class Player : MonoBehaviour
     /// <param name="damage"> pasar el numero en valor absoluto</param>
     public void TakeDamage(int damage)
     {
-        playerHealth -= damage;
-        UpdatePlayerHealth();
+        if ((playerHealth - damage) <= HealthManager.instance.numOfHearts)
+        {
+            playerHealth -= damage;
+            UpdatePlayerHealth();
+        }
     }
     /// <summary>
     /// Curar al jugador
@@ -36,8 +39,11 @@ public class Player : MonoBehaviour
     /// <param name="heal">pasar el numero en valor absoluto</param>
     public void HealthDamage(int heal)
     {
-        playerHealth += heal;
-        UpdatePlayerHealth();
+        if ((playerHealth + heal) <= HealthManager.instance.numOfHearts)
+        {
+            playerHealth += heal;
+            UpdatePlayerHealth();
+        }
     }
     /// <summary>
     /// Aplicar subida de daño al jugador
@@ -45,8 +51,11 @@ public class Player : MonoBehaviour
     /// <param name="attUp">pasar en valor absoluto</param>
     public void attackUp(int attUp)
     {
-        playerAttack += attUp;
-        UpdatePlayerAttack();
+        if (playerAttack + attUp <= HealthManager.instance.numOfAttackPower || playerAttack + attUp > 0)
+        {
+            playerAttack += attUp;
+            UpdatePlayerAttack();
+        }
     }
     /// <summary>
     /// Aplicar la bajada de daño al jugador
@@ -54,8 +63,11 @@ public class Player : MonoBehaviour
     /// <param name="attDown">pasar en valor absoluto</param>
     public void attackDown(int attDown)
     {
-        playerAttack -= attDown;
-        UpdatePlayerAttack();
+        if (playerAttack - attDown <= HealthManager.instance.numOfAttackPower || playerAttack - attDown > 0)
+        {
+            playerAttack -= attDown;
+            UpdatePlayerAttack();
+        }
     }
 
     public void UpdatePlayerHealth()

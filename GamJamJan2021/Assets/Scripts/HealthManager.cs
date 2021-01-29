@@ -8,8 +8,8 @@ public class HealthManager : MonoBehaviour
     public int health;
     public int attack;
 
-    public int numOfHearts;
-    public int numOfAttackPower;
+    public int numOfHearts = 3;
+    public int numOfAttackPower = 3;
     public static HealthManager instance = null;
     public Canvas UICanvas;
 
@@ -21,8 +21,6 @@ public class HealthManager : MonoBehaviour
     public Image[] attacks;
     public Sprite fullAttack;
     public Sprite emptyAttack;
-
-    bool firstCheckUI = false;
 
     // Start is called before the first frame update
     void Start()
@@ -104,14 +102,13 @@ public class HealthManager : MonoBehaviour
 
     private void Update()
     {
-        //if (UICanvas == null && !firstCheckUI )//ToDo: arreglar ñapa forzando la carga de otra forma o no recargar escenas
-        //{
-        //    UICanvas = GameObject.FindGameObjectWithTag("CanvasUI").GetComponent<Canvas>();
-        //    hearts = Utilities.getAllChildsObjectWithTag<Image>(UICanvas.transform, "LifesUI").ToArray();
-        //    attacks = Utilities.getAllChildsObjectWithTag<Image>(UICanvas.transform, "AttackPowerUI").ToArray();
-
-        //    firstCheckUI = true;
-        //}
+        if (UICanvas == null )//ToDo: arreglar ñapa forzando la carga de otra forma o no recargar escenas
+        {
+            DestroyImmediate(UICanvas);
+            UICanvas = GameObject.FindGameObjectWithTag("CanvasUI").GetComponent<Canvas>();
+            hearts = Utilities.getAllChildsObjectWithTag<Image>(UICanvas.transform, "LifesUI").ToArray();
+            attacks = Utilities.getAllChildsObjectWithTag<Image>(UICanvas.transform, "AttackPowerUI").ToArray();
+        }
         //health
         if (health > numOfHearts)
         {
@@ -173,10 +170,22 @@ public class HealthManager : MonoBehaviour
 
     public void UpdateUIHealth(int _health)
     {
-        health = _health;
+        if (_health <= numOfHearts)
+        {
+            health = _health;
+        }
+        
+        if (health <= 0)
+        {
+            GameManager.instance.PlayerDeathMenu();
+        }
     }
     public void UpdateUIAttack(int _attack)
     {
-        attack = _attack;
+        if (_attack <= numOfAttackPower || _attack > 0)
+        {
+            attack = _attack;
+        }
+        
     }
 }

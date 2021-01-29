@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 958425674469829616}
   - component: {fileID: 958425674469829619}
+  - component: {fileID: -2380009673063616403}
   m_Layer: 5
   m_Name: GameManager
   m_TagString: Manager
@@ -46,5 +47,23 @@ MonoBehaviour:
   cards: []
   CanvasCardsPuzzle: {fileID: 8018770510092853443, guid: 974202a612287e74d83ed34228f82069, type: 3}
   gameTime: {fileID: 0}
+  _board: {fileID: 0}
   player: {fileID: 4843814201679523422, guid: dbd6ce8b62b628b47ab8f84bf7eef04c, type: 3}
   ini_Player: {fileID: 3352289824591936408, guid: e098b18cf103c874d820d0160f5b3c96, type: 3}
+  enemy: {fileID: 0}
+  finalBoss: {fileID: 4956683303701743538, guid: ea9827f30b8e4f149bfe17d72b7e8b09, type: 3}
+  _doorNextLevel: {fileID: 0}
+  ini_DoorNextLevel: {fileID: 7855793640659709070, guid: 8cdcc3b5e134c97458b674684411e16c, type: 3}
+--- !u!114 &-2380009673063616403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958425674469829618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e32a105f3f079f4ba2b986eb2cd14f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLevel: 0

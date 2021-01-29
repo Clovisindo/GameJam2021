@@ -9,6 +9,11 @@ TagManager:
   - GameTime
   - LifesUI
   - AttackPowerUI
+  - CanvasUI
+  - ini_enemy
+  - eGoblin
+  - nextLevelDoor
+  - LichBoss
   layers:
   - Default
   - TransparentFX
