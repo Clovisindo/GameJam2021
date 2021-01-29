@@ -8,8 +8,8 @@ public class HealthManager : MonoBehaviour
     public int health;
     public int attack;
 
-    public int numOfHearts;
-    public int numOfAttackPower;
+    public int numOfHearts = 3;
+    public int numOfAttackPower = 3;
     public static HealthManager instance = null;
     public Canvas UICanvas;
 
