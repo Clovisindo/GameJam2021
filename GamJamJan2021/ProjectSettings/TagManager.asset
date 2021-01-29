@@ -13,6 +13,7 @@ TagManager:
   - ini_enemy
   - eGoblin
   - nextLevelDoor
+  - LichBoss
   layers:
   - Default
   - TransparentFX

@@ -23,12 +23,16 @@ public class BoardManager : MonoBehaviour
     private int _nCardsBuffLife;
     private int _nCardsDebuffAtk;
     private int _nCardsDebugsLife;
+    private int _nCardsLichPhylactery;
 
 
     int comboStrike = 0;
     int totalMonsterGenerated = 0;
     int totalMovesLevel = 0;
     int totalCardsLevel = 0;
+    private bool finalBoss = false;
+
+    public bool FinalBoss { get => finalBoss; set => finalBoss = value; }
 
     // Start is called before the first frame update
     void Awake()
@@ -36,16 +40,16 @@ public class BoardManager : MonoBehaviour
         //dificultad nivel 1
         _pairCardsToWin = 4;
         _failMovesToDamage = 4;
-        _nCardsGoblin = 2;
-        _nCardsOrc = 0;
-        _nCardsBuffAtk = 2;
+        _nCardsGoblin = 4;
+        _nCardsOrc = 4;
+        _nCardsBuffAtk = 4;
         _nCardsBuffLife = 2;
         _nCardsDebuffAtk = 2;
-        _nCardsDebugsLife = 0;
+        _nCardsDebugsLife = 2;
 
         //instanciamos los parametros del primer nivel
         GameManager.instance.SetParametersNewLevel(_pairCardsToWin, _failMovesToDamage, _nCardsGoblin, _nCardsOrc, _nCardsBuffAtk,
-        _nCardsBuffLife, _nCardsDebuffAtk, _nCardsDebugsLife, level);
+        _nCardsBuffLife, _nCardsDebuffAtk, _nCardsDebugsLife, _nCardsLichPhylactery, level);
         CalculateMonsterGenerated();
     }
 
@@ -69,6 +73,10 @@ public class BoardManager : MonoBehaviour
     private void GenerateDificultyNewlevel()
     {
         difficulty = 0;
+        level++;
+
+        CheckLevelFinalBoss();
+
         //actualizamos datos necesarios para calcular la dificultad
         UpdateTotalCardsLevel();
         UpdateTotalMovesLevel();
@@ -83,51 +91,108 @@ public class BoardManager : MonoBehaviour
         SetNewDifficulty();
     }
 
+    private void CheckLevelFinalBoss()
+    {
+        if (level == 3)
+        {
+            finalBoss = true;
+        }
+    }
+
     private void SetNewDifficulty()
     {
-        switch (difficulty)
+        if (finalBoss)
         {
-            case 1:
-            case 2:
-            case 3:
-                _pairCardsToWin = 2;
-                _failMovesToDamage = 4;
-                _nCardsGoblin = 2;
-                _nCardsOrc = 0;
-                _nCardsBuffAtk = 2;
-                _nCardsBuffLife = 2;
-                _nCardsDebuffAtk = 2;
-                _nCardsDebugsLife = 0;
-                break;
+            switch (difficulty)
+            {
+                case 1:
+                case 2:
+                case 3:
+                    _pairCardsToWin = 4;
+                    _failMovesToDamage = 4;
+                    _nCardsGoblin = 4;
+                    _nCardsOrc = 2;
+                    _nCardsBuffAtk = 2;
+                    _nCardsBuffLife = 2;
+                    _nCardsDebuffAtk = 2;
+                    _nCardsDebugsLife = 2;
+                    _nCardsLichPhylactery = 4;
+                    break;
 
-            case 4:
-            case 5:
-            case 6:
-                _pairCardsToWin = 3;
-                _failMovesToDamage = 3;
-                _nCardsGoblin = 2;
-                _nCardsOrc = 2;
-                _nCardsBuffAtk = 2;
-                _nCardsBuffLife = 0;
-                _nCardsDebuffAtk = 2;
-                _nCardsDebugsLife = 0;
-                break;
+                case 4:
+                case 5:
+                case 6:
+                    _pairCardsToWin = 6;
+                    _failMovesToDamage = 3;
+                    _nCardsGoblin = 4;
+                    _nCardsOrc = 2;
+                    _nCardsBuffAtk = 0;
+                    _nCardsBuffLife = 2;
+                    _nCardsDebuffAtk = 2;
+                    _nCardsDebugsLife = 2;
+                    _nCardsLichPhylactery = 6;
+                    break;
 
-            case 7:
-            case 8:
-            case 9:
-                _pairCardsToWin = 4;
-                _failMovesToDamage = 2;
-                _nCardsGoblin = 2;
-                _nCardsOrc = 4;
-                _nCardsBuffAtk = 2;
-                _nCardsBuffLife = 0;
-                _nCardsDebuffAtk = 0;
-                _nCardsDebugsLife = 0;
-                break;
+                case 7:
+                case 8:
+                case 9:
+                    _pairCardsToWin = 8;
+                    _nCardsGoblin = 4;
+                    _nCardsOrc = 4;
+                    _nCardsBuffAtk = 0;
+                    _nCardsBuffLife = 0;
+                    _nCardsDebuffAtk = 0;
+                    _nCardsDebugsLife = 2;
+                    _nCardsLichPhylactery = 8;
+                    break;
+            }
+        }
+        else
+        {
+            switch (difficulty)
+            {
+                case 1:
+                case 2:
+                case 3:
+                    _pairCardsToWin = 4;
+                    _failMovesToDamage = 4;
+                    _nCardsGoblin = 4;
+                    _nCardsOrc = 4;
+                    _nCardsBuffAtk = 4;
+                    _nCardsBuffLife = 2;
+                    _nCardsDebuffAtk = 2;
+                    _nCardsDebugsLife = 2;
+                    break;
+
+                case 4:
+                case 5:
+                case 6:
+                    _pairCardsToWin = 6;
+                    _failMovesToDamage = 3;
+                    _nCardsGoblin = 4;
+                    _nCardsOrc = 6;
+                    _nCardsBuffAtk = 2;
+                    _nCardsBuffLife = 2;
+                    _nCardsDebuffAtk = 2;
+                    _nCardsDebugsLife = 2;
+                    break;
+
+                case 7:
+                case 8:
+                case 9:
+                    _pairCardsToWin = 8;
+                    _failMovesToDamage = 2;
+                    _nCardsGoblin = 6;
+                    _nCardsOrc = 6;
+                    _nCardsBuffAtk = 2;
+                    _nCardsBuffLife = 0;
+                    _nCardsDebuffAtk = 2;
+                    _nCardsDebugsLife = 2;
+                    break;
+            }
         }
 
-        level++;
+       
     }
 
     private void CheckDifAtkPlayer()
@@ -201,7 +266,7 @@ public class BoardManager : MonoBehaviour
        
         //asignamos los parametros ya cargados de la dificultad al GameManager
         GameManager.instance.SetParametersNewLevel(_pairCardsToWin, _failMovesToDamage, _nCardsGoblin, _nCardsOrc, _nCardsBuffAtk,
-        _nCardsBuffLife, _nCardsDebuffAtk, _nCardsDebugsLife, level);
+        _nCardsBuffLife, _nCardsDebuffAtk, _nCardsDebugsLife,_nCardsLichPhylactery, level);
         CalculateMonsterGenerated();//actualizamos los monstruos generados
     }
 
@@ -222,7 +287,8 @@ public class BoardManager : MonoBehaviour
 
     private void UpdateTotalCardsLevel()
     {
-        totalCardsLevel = _nCardsGoblin + _nCardsOrc + _nCardsBuffAtk + _nCardsBuffLife + _nCardsDebuffAtk + _nCardsDebugsLife;
+        totalCardsLevel = _nCardsGoblin + _nCardsOrc + _nCardsBuffAtk + _nCardsBuffLife + _nCardsDebuffAtk + _nCardsDebugsLife
+            + _nCardsLichPhylactery;
     }
 
     

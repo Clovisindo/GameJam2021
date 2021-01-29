@@ -10,5 +10,6 @@ public enum EnumTypeCards
     cBuffLifePlayer = 2,
     cDebuffLifePlayer = 3,
     cGoblinMonster = 4,
-    cOrcMonster = 5
+    cOrcMonster = 5,
+    cLichPhylactery = 6
 };

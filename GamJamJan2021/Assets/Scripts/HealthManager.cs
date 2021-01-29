@@ -170,10 +170,22 @@ public class HealthManager : MonoBehaviour
 
     public void UpdateUIHealth(int _health)
     {
-        health = _health;
+        if (_health <= numOfHearts)
+        {
+            health = _health;
+        }
+        
+        if (health <= 0)
+        {
+            GameManager.instance.PlayerDeathMenu();
+        }
     }
     public void UpdateUIAttack(int _attack)
     {
-        attack = _attack;
+        if (_attack <= numOfAttackPower || _attack > 0)
+        {
+            attack = _attack;
+        }
+        
     }
 }

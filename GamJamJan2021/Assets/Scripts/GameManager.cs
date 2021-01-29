@@ -17,8 +17,10 @@ public class GameManager : MonoBehaviour
 	public BoardManager _board;
 	public Player player;
 	public GameObject ini_Player;
-	public Enemy enemy;
-	public GameObject _doorNextLevel;
+	[NonSerialized] public Enemy enemy;
+	public GameObject ini_enemy;
+	public eLichBoss finalBoss;
+	[NonSerialized] public GameObject _doorNextLevel;
 	public GameObject ini_DoorNextLevel;
 
 	//parametros que definen de dificultad
@@ -39,11 +41,13 @@ public class GameManager : MonoBehaviour
 	private int nCardsBuffLife;
 	private int nCardsDebuffAtk;
 	private int nCardsDebuffLife;
+	private int nCardsLichPhylacteries;
 
 	private bool _init = false;
+	private bool _flipBoardLevel = false;
 	private int _matches = 4;
 	private int level = 1;
-    
+    private int target = 60;
 
     public int NCardsGoblin { get => nCardsGoblin; set => nCardsGoblin = value; }
     public int NCardsOrc { get => nCardsOrc; set => nCardsOrc = value; }
@@ -51,6 +55,7 @@ public class GameManager : MonoBehaviour
     public int NCardsBuffLife { get => nCardsBuffLife; set => nCardsBuffLife = value; }
     public int NCardsDebuffAtk { get => nCardsDebuffAtk; set => nCardsDebuffAtk = value; }
     public int NCardsDebuffLife { get => nCardsDebuffLife; set => nCardsDebuffLife = value; }
+    public int NCardsLichPhylacteries { get => nCardsLichPhylacteries; set => nCardsLichPhylacteries = value; }
 
 
     // Start is called before the first frame update
@@ -64,12 +69,14 @@ public class GameManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-
+		Application.targetFrameRate = target;
 		//DontDestroyOnLoad(gameObject);
 		_board = GetComponent<BoardManager>();
 		player = Instantiate(player, ini_Player.transform.position, Quaternion.identity);
+		ini_enemy = GameObject.FindGameObjectWithTag("ini_enemy");
 		//instantiate array cards in canvas
 		EditCanvasCard = Instantiate(CanvasCardsPuzzle, CanvasCardsPuzzle.transform.position, Quaternion.identity);
+		EditCanvasCard.GetComponent<Canvas>().worldCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 		_doorNextLevel =  GameObject.FindGameObjectWithTag("nextLevelDoor");
 		cards = GameObject.FindGameObjectsWithTag("Card");
 		gameTime = GameObject.FindGameObjectWithTag("GameTime");
@@ -79,7 +86,9 @@ public class GameManager : MonoBehaviour
     void Update()
 	{
 		if (!_init)// volver a iniciar la partida ToDo: cargar fases
+		{
 			initializeCards();
+		}
 
 		if (Input.GetMouseButtonUp(0))// cuando clicas comprueba las cartas
 			checkCards();
@@ -102,11 +111,17 @@ public class GameManager : MonoBehaviour
 			DestroyImmediate(EditCanvasCard);
 			//DestroyImmediate(_doorNextLevel);
 			EditCanvasCard = Instantiate(CanvasCardsPuzzle, CanvasCardsPuzzle.transform.position, Quaternion.identity);
+			EditCanvasCard.GetComponent<Canvas>().worldCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 			_doorNextLevel = GameObject.FindGameObjectWithTag("nextLevelDoor");
 			cards = GameObject.FindGameObjectsWithTag("Card");
 			gameTime = GameObject.FindGameObjectWithTag("GameTime");
 			_matches = pairCardsToWin; 
 			_board.nextLevel = false;
+            if (_board.FinalBoss)
+            {
+				finalBoss = Instantiate(finalBoss, ini_enemy.transform.position, Quaternion.identity);
+				finalBoss.SetLifeLich(NCardsLichPhylacteries / 2);
+			}
 		}
 
 		//ahora las daremos ya definidas desde la clase BoardManager
@@ -125,13 +140,21 @@ public class GameManager : MonoBehaviour
 		//cartas de debuff
 		GenerateCardDebuffAttack(nCardsDebuffAtk);
 		GenerateCardDebuffLife(nCardsDebuffLife);
-		
-		foreach (GameObject c in cards)// carga las texturas de cada carta ToDo: cargar aqui las clases propias de cada carta
-			c.GetComponent<CardScript>().setupGraphics();
 
+		//cartas de filacterea del liche
+		GenerateCardLichPhylactery(NCardsLichPhylacteries);
+
+		foreach (GameObject c in cards)// carga las texturas de cada carta ToDo: cargar aqui las clases propias de cada carta
+		{
+			c.GetComponent<CardScript>().setupGraphics();
+			c.GetComponent<Button>().enabled = false;
+		}
+		
+		ShowBoardLevel();
+	
 		if (!_init)
 			_init = true;
-	}
+    }
 
 	private void GenerateCardBuffAttack( int numberCards )
     {
@@ -289,6 +312,32 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	private void GenerateCardLichPhylactery(int numberCards)
+	{
+		for (int j = 0; j < numberCards; j++)
+		{
+			int i = 0;
+			int choice = 0;
+			bool test = false;
+			//por cada tipo de carta, instanciamos dos huecos
+			while (!test)//inicializa las cartas de forma aleatoria en cada posicion
+			{
+				choice = UnityEngine.Random.Range(0, cards.Length);//posicion random del tablero ToDo: hacer por posiciones ya asignada previamente
+				if (cards[choice].GetComponent<CardScript>() != null)
+				{
+					test = false;
+				}
+				else//busca hasta que encuentra una carta del tablero sin inicializar
+				{
+					cards[choice].AddComponent<cLichPhylacteries>();// la clase que corresponde
+					cards[choice].GetComponent<Button>().onClick.AddListener(() => cards[choice].GetComponent<cLichPhylacteries>().flipcard());
+					cards[choice].GetComponent<cLichPhylacteries>().initialized = true;
+					test = true;
+				}
+			}
+		}
+	}
+
 
 	/// <summary>
 	/// Levantar la carta
@@ -326,7 +375,7 @@ public class GameManager : MonoBehaviour
 			x = 2;//estado que no cambia en ninguna parte,no vuelve a girarse
 			_matches--;
 			cards[c[0]].GetComponent<CardScript>().SpecialEffect();
-			if (_matches == 0)// victoria
+			if (_matches == 0 && !_board.FinalBoss)// victoria SALVO que no sea final boss
 			{
 				//x = 0; esto sobre por que si no siempre voltea la ultima
 				gameTime.GetComponent<timeScript>().endGame();
@@ -352,7 +401,29 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-    private void OpenDoorNextLevel()
+	private void ShowBoardLevel()
+    {
+		StartCoroutine(FlipBoardLevel());
+		
+	}
+
+	IEnumerator FlipBoardLevel()
+	{
+		_flipBoardLevel = false;
+		foreach(GameObject c in cards)
+			c.GetComponent<CardScript>().flipcard();
+
+		yield return new WaitForSeconds(1.2F);
+
+		foreach (GameObject c in cards)
+		{
+			c.GetComponent<CardScript>().flipcard();
+			c.GetComponent<Button>().enabled = true;
+		}
+
+	}
+
+	private void OpenDoorNextLevel()
     {
 		//activamos la puerta
 		_doorNextLevel.GetComponent<Image>().enabled = true;
@@ -381,7 +452,7 @@ public class GameManager : MonoBehaviour
 	/// <param name="_nCardsDebugsLife"></param>
 	/// <param name="_level"></param>
 	public void SetParametersNewLevel(int _pairCardsToWin,int _failMovesToDamage, int _nCardsGoblin, int _nCardsOrc,int _nCardsBuffAtk,
-		int _nCardsBuffLife, int _nCardsDebuffAtk, int _nCardsDebugsLife, int _level)
+		int _nCardsBuffLife, int _nCardsDebuffAtk, int _nCardsDebugsLife, int _nCardsLichPhylactery, int _level)
 	{
 		pairCardsToWin = _pairCardsToWin;
 		failMovesToDamage = _failMovesToDamage;
@@ -391,6 +462,7 @@ public class GameManager : MonoBehaviour
 		nCardsBuffLife = _nCardsBuffLife;
 		nCardsDebuffAtk = _nCardsDebuffAtk;
 		nCardsDebuffLife = _nCardsDebugsLife;
+		NCardsLichPhylacteries = _nCardsLichPhylactery;
 		level = _level;
 
 
@@ -403,10 +475,19 @@ public class GameManager : MonoBehaviour
 
 	public void reGame()
 	{
-		SceneManager.LoadScene("gameScene");
+		//SceneManager.LoadScene("gameScene");
+		cards = GameObject.FindGameObjectsWithTag("Card");
+
+		foreach (GameObject c in cards)
+			c.GetComponent<CardScript>().flipcard();
 	}
 
 	public void reMenu()
+	{
+		SceneManager.LoadScene("menuScene");
+	}
+
+	public void PlayerDeathMenu()
 	{
 		SceneManager.LoadScene("menuScene");
 	}
