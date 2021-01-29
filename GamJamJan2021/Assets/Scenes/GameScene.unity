@@ -643,6 +643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 958425674469829618, guid: 497bcaee692ba31478f6294aaed241c4, type: 3}
   healthManager: {fileID: 8114979700016953067, guid: 878a9740181958b47a3bd7fd66cd628f, type: 3}
+  soundManager: {fileID: 7252693482158110292, guid: bc491ea0f5d196e45aad8e775725b13b, type: 3}
 --- !u!1 &750875519
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,7 +701,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d5b7ddf531fc4674ba3ecf8c30899d3a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3047f23ac5e3f494893c85e8f77be235, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -719,8 +720,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 750875519}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 605, y: 242, z: 0}
-  m_LocalScale: {x: 20, y: 5, z: 1}
+  m_LocalPosition: {x: 608.17, y: 251.9, z: 0}
+  m_LocalScale: {x: 37.36551, y: 35.157074, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -1387,7 +1388,7 @@ RectTransform:
 --- !u!114 &2109364622
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 2611708805176662429, guid: f712f5437c7ee4141977c9f34831fee6, type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2109364620}
@@ -1397,14 +1398,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.09242612, g: 0.12789539, b: 0.6320754, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: b1da378cdae3c6547970e2419875a94a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
