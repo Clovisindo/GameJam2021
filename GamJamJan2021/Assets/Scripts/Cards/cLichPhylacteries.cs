@@ -17,6 +17,7 @@ public class cLichPhylacteries : CardScript
         _cardFace = Resources.Load<Sprite>("CLichPhylactery") as Sprite;
         _cardBack = Resources.Load<Sprite>("cardDown") as Sprite;
         _state = 1;
+        DO_NOT = false;
         cardValue = (int)enumTypeCard;
         enemy = GameObject.FindGameObjectWithTag("LichBoss").GetComponent<eLichBoss>();
 
@@ -26,6 +27,7 @@ public class cLichPhylacteries : CardScript
 
     public override void SpecialEffect()
     {
+        GameManager.instance.SetDescriptionText("That make damage to The Lich, keep going on!!");
         SoundManager.instance.PlaySingle(openFlask);
         SoundManager.instance.PlaySingle(lichSound);
         enemy.LichTakeDamage(damageToLich);

@@ -15,6 +15,7 @@ public class cOrcMonster : CardScript
         _cardFace = Resources.Load<Sprite>("cOrcMonster") as Sprite;
         _cardBack = Resources.Load<Sprite>("cardDown") as Sprite;
         _state = 1;
+        DO_NOT = false;
         cardValue = (int)enumTypeCard;
         ini_enemy = GameObject.FindGameObjectWithTag("ini_enemy");
         enemy = Resources.Load<GameObject>("cOgre") as GameObject;
@@ -25,6 +26,7 @@ public class cOrcMonster : CardScript
 
     public override void SpecialEffect()
     {
+        GameManager.instance.SetDescriptionText("You kill an orc, but The Lich is now much stronger...");
         SoundManager.instance.PlaySingle(footSteps);
         Instantiate(enemy, ini_enemy.transform.position, Quaternion.identity);
         GameManager.instance.UpdateMonsterKilled();//sumamos los monstruos matados

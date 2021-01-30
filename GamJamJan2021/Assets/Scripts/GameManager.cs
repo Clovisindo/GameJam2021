@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 	public GameObject CanvasCardsPuzzle;
 	private GameObject EditCanvasCard;
 	public GameObject gameTime;
+	public Text descriptionText;
 
 	public static GameManager instance = null;
 	public BoardManager _board;
@@ -72,7 +73,17 @@ public class GameManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
+		if (HealthManager.instance != null)
+		{
+			if (!HealthManager.instance.enabled)
+			{
+				HealthManager.instance.enabled = true;
+				HealthManager.instance.SetNewCanvasUI();
+			}
+		}
+
 		Application.targetFrameRate = target;
+		descriptionText = GameObject.FindGameObjectWithTag("descriptionText").GetComponent<Text>(); 
 		//DontDestroyOnLoad(gameObject);
 		_board = GetComponent<BoardManager>();
 		player = Instantiate(player, ini_Player.transform.position, Quaternion.identity);
@@ -120,6 +131,7 @@ public class GameManager : MonoBehaviour
 			gameTime = GameObject.FindGameObjectWithTag("GameTime");
 			_matches = pairCardsToWin; 
 			_board.nextLevel = false;
+
             if (_board.FinalBoss)
             {
 				SoundManager.instance.musicSource.Stop();
@@ -390,6 +402,7 @@ public class GameManager : MonoBehaviour
 				gameTime.GetComponent<timeScript>().endGame();
 				setParametersEndLevel();
 				OpenDoorNextLevel();
+				GameManager.instance.SetDescriptionText("You find your way to the door to the next level");
 			}
 		}
         else//anotamos los movimientos fallidos para activar daño
@@ -422,7 +435,7 @@ public class GameManager : MonoBehaviour
 		foreach(GameObject c in cards)
 			c.GetComponent<CardScript>().flipcard();
 
-		yield return new WaitForSeconds(1.2F);
+		yield return new WaitForSeconds(1.5F);
 
 		foreach (GameObject c in cards)
 		{
@@ -482,6 +495,11 @@ public class GameManager : MonoBehaviour
 		monstersKilled++;
     }
 
+	public void SetDescriptionText(string _description)
+    {
+		descriptionText.text = _description;
+    }
+
 	public void reGame()
 	{
 		//SceneManager.LoadScene("gameScene");
@@ -496,8 +514,15 @@ public class GameManager : MonoBehaviour
 		SceneManager.LoadScene("menuScene");
 	}
 
+	public void victoryMenu()
+	{
+		DestroyImmediate(HealthManager.instance);
+		SceneManager.LoadScene("VictoryScene");
+	}
+
 	public void PlayerDeathMenu()
 	{
+		HealthManager.instance.enabled = false;
 		SceneManager.LoadScene("menuScene");
 	}
 
