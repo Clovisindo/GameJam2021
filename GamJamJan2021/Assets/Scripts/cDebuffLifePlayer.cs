@@ -14,6 +14,7 @@ public class cDebuffLifePlayer : CardScript
         _cardFace = Resources.Load<Sprite>("CDebuffLifeCard") as Sprite;
         _cardBack = Resources.Load<Sprite>("cardDown") as Sprite;
         _state = 1;
+        DO_NOT = false;
         cardValue = (int)enumTypeCard;
 
         debuffDischarge = Resources.Load<AudioClip>("paralyzer-discharge-01");
@@ -27,6 +28,7 @@ public class cDebuffLifePlayer : CardScript
     protected void DebuffLifePlayer()
     {
         // debufamos al jugador
+        GameManager.instance.SetDescriptionText("So many fights make you feel tired and lose some health...");
         SoundManager.instance.PlaySingle(debuffDischarge);
         GameManager.instance.player.TakeDamage(damageDebuff);
         Debug.Log("El jugador pierde vida.");

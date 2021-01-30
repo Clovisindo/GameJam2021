@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +12,8 @@ public class HealthManager : MonoBehaviour
     public int numOfHearts = 3;
     public int numOfAttackPower = 3;
     public static HealthManager instance = null;
-    public Canvas UICanvas;
+    private Canvas UICanvas;
+    public Canvas canvasGame;
 
     public Image[] hearts;
     public Sprite fullHeart;
@@ -22,8 +24,14 @@ public class HealthManager : MonoBehaviour
     public Sprite fullAttack;
     public Sprite emptyAttack;
 
+    private bool init = false;
+    private const int ini_health = 3;
+    private const int ini_atk = 1;
+
+    public bool Init1 { get => init; set => init = value; }
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (instance == null)
         {
@@ -34,6 +42,8 @@ public class HealthManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+        health = ini_health;
+        attack = ini_atk;
         UICanvas = GameObject.FindGameObjectWithTag("CanvasUI").GetComponent<Canvas>();
         hearts = Utilities.getAllChildsObjectWithTag<Image>(UICanvas.transform, "LifesUI").ToArray();
         attacks = Utilities.getAllChildsObjectWithTag<Image>(UICanvas.transform, "AttackPowerUI").ToArray();
@@ -98,74 +108,80 @@ public class HealthManager : MonoBehaviour
                 attacks[i].enabled = false;
             }
         }
+        init = true;
     }
 
     private void Update()
     {
-        if (UICanvas == null )//ToDo: arreglar ñapa forzando la carga de otra forma o no recargar escenas
-        {
-            DestroyImmediate(UICanvas);
-            UICanvas = GameObject.FindGameObjectWithTag("CanvasUI").GetComponent<Canvas>();
-            hearts = Utilities.getAllChildsObjectWithTag<Image>(UICanvas.transform, "LifesUI").ToArray();
-            attacks = Utilities.getAllChildsObjectWithTag<Image>(UICanvas.transform, "AttackPowerUI").ToArray();
-        }
-        //health
-        if (health > numOfHearts)
-        {
-            health = numOfHearts;
-        }
-        for (int i = 0; i < hearts.Length; i++)
-        {
-            // este if define cuando el corazon carga la imagen rellena o no, segun la cantidad de vida
-            if (i < health)
+            //health
+            if (health > numOfHearts)
             {
-                hearts[i].sprite = fullHeart;
+                health = numOfHearts;
             }
-            else
+            for (int i = 0; i < hearts.Length; i++)
             {
-                hearts[i].sprite = emptyHeart;
+                // este if define cuando el corazon carga la imagen rellena o no, segun la cantidad de vida
+                if (i < health)
+                {
+                    hearts[i].sprite = fullHeart;
+                }
+                else
+                {
+                    hearts[i].sprite = emptyHeart;
+                }
+
+                // controla el numero de corazones maximos que se muestran( los previamente creados en los objetos)
+                //mejora para esto seria instanciarlo desde el iniciador
+                if (i < numOfHearts)
+                {
+                    hearts[i].enabled = true;
+                }
+                else
+                {
+                    hearts[i].enabled = false;
+                }
             }
 
-            // controla el numero de corazones maximos que se muestran( los previamente creados en los objetos)
-            //mejora para esto seria instanciarlo desde el iniciador
-            if (i < numOfHearts)
+            //attack
+            if (attack > numOfAttackPower)
             {
-                hearts[i].enabled = true;
+                attack = numOfAttackPower;
             }
-            else
+            for (int i = 0; i < attacks.Length; i++)
             {
-                hearts[i].enabled = false;
-            }
-        }
+                // este if define cuando el corazon carga la imagen rellena o no, segun la cantidad de vida
+                if (i < attack)
+                {
+                    attacks[i].sprite = fullAttack;
+                }
+                else
+                {
+                    attacks[i].sprite = emptyAttack;
+                }
 
-        //attack
-        if (attack > numOfAttackPower)
-        {
-            attack = numOfAttackPower;
-        }
-        for (int i = 0; i < attacks.Length; i++)
-        {
-            // este if define cuando el corazon carga la imagen rellena o no, segun la cantidad de vida
-            if (i < attack)
-            {
-                attacks[i].sprite = fullAttack;
+                // controla el numero de corazones maximos que se muestran( los previamente creados en los objetos)
+                //mejora para esto seria instanciarlo desde el iniciador
+                if (i < numOfAttackPower)
+                {
+                    attacks[i].enabled = true;
+                }
+                else
+                {
+                    attacks[i].enabled = false;
+                }
             }
-            else
-            {
-                attacks[i].sprite = emptyAttack;
-            }
+    }
 
-            // controla el numero de corazones maximos que se muestran( los previamente creados en los objetos)
-            //mejora para esto seria instanciarlo desde el iniciador
-            if (i < numOfAttackPower)
-            {
-                attacks[i].enabled = true;
-            }
-            else
-            {
-                attacks[i].enabled = false;
-            }
-        }
+    internal void SetNewCanvasUI()
+    {
+
+        //DestroyImmediate(UICanvas);
+        //UICanvas = Instantiate(canvasGame, canvasGame.transform.position, Quaternion.identity);
+        UICanvas = GameObject.FindGameObjectWithTag("CanvasUI").GetComponent<Canvas>();
+        health = ini_health;
+        attack = ini_atk;
+        hearts = Utilities.getAllChildsObjectWithTag<Image>(UICanvas.transform, "LifesUI").ToArray();
+        attacks = Utilities.getAllChildsObjectWithTag<Image>(UICanvas.transform, "AttackPowerUI").ToArray();
     }
 
     public void UpdateUIHealth(int _health)

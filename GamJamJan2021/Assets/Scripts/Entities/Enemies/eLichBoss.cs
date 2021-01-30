@@ -33,6 +33,6 @@ public class eLichBoss : MonoBehaviour
     private void EndGame()
     {
         //terminamos el juego
-        GameManager.instance.reMenu();//ToDo: crear escena de victoria
+        GameManager.instance.victoryMenu();
     }
 }

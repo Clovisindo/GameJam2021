@@ -14,6 +14,7 @@ public class cBuffLifePlayer : CardScript
         _cardFace = Resources.Load<Sprite>("CBuffLifeCard") as Sprite;
         _cardBack = Resources.Load<Sprite>("cardDown") as Sprite;
         _state = 1;
+        DO_NOT = false;
         cardValue = (int)enumTypeCard;
 
         buffSound = Resources.Load<AudioClip>("Powerup_03");
@@ -26,6 +27,7 @@ public class cBuffLifePlayer : CardScript
     protected void HealLifePlayer()
     {
         // bufamos al jugador
+        GameManager.instance.SetDescriptionText("A magic potion grants you with a recover feeling");
         SoundManager.instance.PlaySingle(buffSound);
         GameManager.instance.player.HealthDamage(healBonus);
         Debug.Log("El jugador gana vida.");

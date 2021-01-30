@@ -14,6 +14,7 @@ public class cBuffAttackPlayer : CardScript
         _cardFace = Resources.Load<Sprite>("CBuffAttackCard") as Sprite;
         _cardBack = Resources.Load<Sprite>("cardDown") as Sprite;
         _state = 1;
+        DO_NOT = false;
         cardValue = (int)enumTypeCard;
 
         buffSound = Resources.Load<AudioClip>("Powerup_03");
@@ -27,6 +28,7 @@ public class cBuffAttackPlayer : CardScript
     protected void BuffAttackPlayer()
     {
         // bufamos al jugador
+        GameManager.instance.SetDescriptionText("You find a mighty sword!your power attack rise!");
         SoundManager.instance.PlaySingle(buffSound);
         GameManager.instance.player.attackUp(attackBonus);
         Debug.Log("El jugador sube ataque.");

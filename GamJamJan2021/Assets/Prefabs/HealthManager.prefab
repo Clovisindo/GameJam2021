@@ -46,12 +46,18 @@ MonoBehaviour:
   health: 3
   attack: 1
   numOfHearts: 3
-  numOfAttackPower: 1
-  UICanvas: {fileID: 0}
-  hearts: []
+  numOfAttackPower: 3
+  canvasGame: {fileID: 0}
+  hearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   fullHeart: {fileID: 21300000, guid: 4f89ca006a55895479cf8647d65d22d8, type: 3}
   halfHeart: {fileID: 21300000, guid: 95fcaf156d145744f887a4f499f0f670, type: 3}
   emptyHeart: {fileID: 21300000, guid: 3914b887fa9960f46aa87cf9e8cce6d4, type: 3}
-  attacks: []
+  attacks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   fullAttack: {fileID: 21300000, guid: f5942246406a2ff4f91fd8d94b0a7c7f, type: 3}
   emptyAttack: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
