@@ -720,16 +720,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 750875519}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 38.228764, y: 35.969307, z: 1.023103}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 103.21767, y: 97.117134, z: 2.7623782}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 1517263244}
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.19944331}
-  m_AnchoredPosition: {x: 615, y: 251}
-  m_SizeDelta: {x: 1919.0001, y: 3.4537048}
+  m_AnchoredPosition: {x: 18.900024, y: 70.20003}
+  m_SizeDelta: {x: -1, y: -211.94507}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &881953974
 GameObject:
@@ -919,13 +919,9 @@ PrefabInstance:
       value: HealthManager
       objectReference: {fileID: 0}
     - target: {fileID: 9038014597507102796, guid: 878a9740181958b47a3bd7fd66cd628f, type: 3}
-      propertyPath: hearts.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9038014597507102796, guid: 878a9740181958b47a3bd7fd66cd628f, type: 3}
-      propertyPath: attacks.Array.size
-      value: 3
-      objectReference: {fileID: 0}
+      propertyPath: canvasGame
+      value: 
+      objectReference: {fileID: 1517263243}
     - target: {fileID: 9038014597507102796, guid: 878a9740181958b47a3bd7fd66cd628f, type: 3}
       propertyPath: hearts.Array.data[0]
       value: 
@@ -950,14 +946,6 @@ PrefabInstance:
       propertyPath: attacks.Array.data[2]
       value: 
       objectReference: {fileID: 4736521222183073781}
-    - target: {fileID: 9038014597507102796, guid: 878a9740181958b47a3bd7fd66cd628f, type: 3}
-      propertyPath: numOfAttackPower
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9038014597507102796, guid: 878a9740181958b47a3bd7fd66cd628f, type: 3}
-      propertyPath: canvasGame
-      value: 
-      objectReference: {fileID: 1517263243}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 878a9740181958b47a3bd7fd66cd628f, type: 3}
 --- !u!1 &1517263240
@@ -1063,6 +1051,7 @@ RectTransform:
   - {fileID: 4736521222673129762}
   - {fileID: 4736521222183073779}
   - {fileID: 1594935476}
+  - {fileID: 750875521}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
