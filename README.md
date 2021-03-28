@@ -82,6 +82,28 @@ Activa una animación que representa la muerte del enemigo encontrado.
 
 <!-- GameManager.cs -->
 ### GameManager.cs
+Gestiona la comunicación entre los distintos sistemas del juego(interfaz y controles, boardManager, jugador, vista de mazmorra, generación de niveles, ).
+Inicializa el nivel, comprueba las parejas descubiertas.
+Activa la opción de avanzar al siguiente nivel.
+
+
+<!-- HealthManager.cs -->
+### HealthManager.cs
+
+<!-- MenuScript.cs -->
+### MenuScript.cs
+
+<!-- Player.cs -->
+### Player.cs
+
+<!-- SoundManager.cs -->
+### SoundManager.cs
+
+<!-- TimeScript.cs -->
+### TimeScript.cs
+
+<!-- Utilities.cs -->
+### Utilities.cs
 
 
 <!-- CONTACT -->
