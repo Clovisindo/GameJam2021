@@ -1,7 +1,3 @@
-# Unity2dRogueLike
-Repositorio juego unity2d Roguelike 
-
-
 <!--
 *** Thanks for checking out the Best-README-Template. If you have a suggestion
 *** that would make this better, please fork the repo and create a pull request
@@ -24,107 +20,159 @@ Repositorio juego unity2d Roguelike
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
+[![Contributors][contributors-shield]][contributors-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+
+
 
 
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
+  <a href="https://github.com/GameJam2021">
+    </a>
 
-
-  <h3 align="center">Unity2DRogueLike</h3>
+  <h3 align="center">GameJam2021</h3>
 
   <p align="center">
-    Proyecto autodidacta de aprendizaje en unity2D
+    Roguelike 2D en unity
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Clovisindo/GameJam2021"><strong>Ver documentos »</strong></a>
     <br />
     <br />
+    <a href="https://github.com/Clovisindo/GameJam2021">Ver demo</a>
+    ·
+    <a href="https://github.com/Clovisindo/GameJam2021/issues">Reporta un error</a>
+    ·
+    <a href="https://github.com/Clovisindo/GameJam2021/issues">Solicita una funcionalidad</a>
   </p>
 </p>
 
 
 
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary><h2 style="display: inline-block">Tabla de contenidos</h2></summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">Sobre el proyecto</a>
+      <ul>
+        <li><a href="#built-with">Instrucciones instalación</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Como empezar</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisitos</a></li>
+        <li><a href="#installation">Instalación</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Uso</a></li>
+    <li><a href="#roadmap">Hoja de ruta</a></li>
+    <li><a href="#contributing">Contribuir</a></li>
+    <li><a href="#license">Licencia</a></li>
+    <li><a href="#contact">Contacto</a></li>
+    <li><a href="#Agradecimientos">Agradecimientos</a></li>
+  </ol>
+</details>
 
 
-<!-- Sobre el proyecto -->
-## Sobre el proyecto
 
-Inicio este proyecto personal de aprendizaje en Unity, con objetivo de trabajar todo el ciclo de desarrollo de principio a fin de un videojuego.
-El genero a explorar es el roguelike, en la experiencia mas pequeña posible, pero poder practicar y diseñar mecanicas de este genero de forma práctica.
+<!-- ABOUT THE PROJECT -->
+## Sobre el projecto
 
+Inicio este proyecto personal de aprendizaje en Unity, con objetivo de trabajar todo el ciclo de desarrollo de principio a fin de un videojuego. El genero a explorar es el roguelike, en la experiencia mas pequeña posible, pero poder practicar y diseñar mecanicas de este genero de forma práctica.
 
-<!-- Diagrama de clases -->
-## Diagrama de clases
-Resumen de las funciones realizadas en el proyecto
+Inspirando por juegos como Binding of Isaac, Spelunky y Hammerwatch, busco crear una pequeña experiencia 'roguelike' de aventuras en una mazmorra, el jugador debe enfrentarse a distintos desafios como monstruos y puzzles para llegar victorioso al final de su aventura.
 
-
-<!-- CardScript.cs -->
-### CardScript.cs
-Clase abstracta que implemente la logica basica de las cartas del juego.
-Asigna las imagenes de ambos lados de las cartas.
-Girar la carta pausa y vuelta automatica al fallar hacer una pareja.
-Cartas implementadas: goblin, orco, subir y bajar ataque, ganar o perder vida, filactereas de liche jefe final.
-Las distintas implementaciones, tienen efectos de sonido, textos descriptivos e invocan animaciones en la pantalla de mazmorra.
+El objetivo de funcionalidades finales es el siguiente:
+* Un jugador con distintas clases, con al menos dos armas que le den habilidades distintas.
+* Combate cuerpo a cuerpo y a distancia.
+* Variedad de enemigos que impliquen distintos enfoques de desafio para el jugador.
+* Desafios sin combate a través de puzzles con palancas/botones.
+* Habitaciones y tesoros ocultos.
+* Generación dinámica y procedural de los niveles.
+* Dificultad adaptativa en función de las acciones del jugador.
 
 
-<!-- BoardManager.cs -->
-### BoardManager.cs
-Genera el mapa que sirve de fondo para el juego.
-Genera el tablero de de ese nivel, ajustando la dificultad de forma dinámica, segun las acciones del jugador en el nivel actual( cuantos intentos realiza, cuantos monstruos ha matado, el poder de ataque)
-Los parametros que se modifican para la dificultad son: parejas para ganar, intentos fallidos para recibir daño, cartas de cada tipo que aparecen.
+Para mas información consulta el resto de la [documentación](https://github.com/Clovisindo/GameJam2021/blob/master/contributing.md).
+
+### Tecnologia usada:
+
+* Unity
+* Visual Studio Community 2019
 
 
-<!-- Enemy.cs -->
-### Enemy.cs
-Representación grafica en la vista de mazmorra, del enemigo invocado por las cartas.
-Activa una animación que representa la muerte del enemigo encontrado.
+
+<!-- Como empezar -->
+## Como empezar
+
+Guia paso a paso de como descargar el proyecto..
+
+### Prerequisitos
+
+* Unity 2020
+
+### Instalacion
+
+1. Clona el repositorio.
+   ```sh
+   git clone https://github.com/Clovisindo/GameJam2021.git
+   ```
+2. Añadir la solucion a Unity
+3. Recomendado instalar github para visual studio.
 
 
-<!-- GameManager.cs -->
-### GameManager.cs
-Gestiona la comunicación entre los distintos sistemas del juego(interfaz y controles, boardManager, jugador, vista de mazmorra, generación de niveles, ).
-Inicializa el nivel, comprueba las parejas descubiertas.
-Activa la opción de avanzar al siguiente nivel.
+<!-- Hoja de ruta -->
+## Hoja de ruta
+
+Revisa las [tareas abiertas](https://github.com/Clovisindo/GameJam2021/issues) para ver la lista de proximas funcionalidades (y fallos conocidos).
 
 
-<!-- HealthManager.cs -->
-### HealthManager.cs
 
-<!-- MenuScript.cs -->
-### MenuScript.cs
+<!-- Contribuir -->
+## Contribuir
 
-<!-- Player.cs -->
-### Player.cs
-
-<!-- SoundManager.cs -->
-### SoundManager.cs
-
-<!-- TimeScript.cs -->
-### TimeScript.cs
-
-<!-- Utilities.cs -->
-### Utilities.cs
+1. Crea un Fork del proyecto
+2. crea una rama de tu funcionalidad (`git checkout -b feature/AmazingFeature`)
+3. Sube los cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Añadelos a la rama (`git push origin feature/AmazingFeature`)
+5. abre una "Pull request".
 
 
-<!-- CONTACT -->
-## Contact
 
-Clovis - [@Clovisindo](https://twitter.com/clovisindo) 
+<!-- LICENCIA -->
+## Licencia
+Distribuido bajo licencia MIT.
 
 
+<!-- Contacto -->
+## Contacto
+
+Damian - [@Clovisindo](https://twitter.com/Clovisindo) - damianmgbamio@gmail.com
+
+Project Link: [https://github.com/Clovisindo/Unity2dRogueLike](https://github.com/Clovisindo/GameJam2021)
+
+
+<!-- Agradecimientos -->
+## Agradecimientos
+
+* [Assets creados por 0x72](https://0x72.itch.io/dungeontileset-ii)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/Clovisindo/GameJam2021.svg?style=for-the-badge
+[contributors-url]: https://github.com/Clovisindo/GameJam2021/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Clovisindo/GameJam2021.svg?style=for-the-badge
+[forks-url]: https://github.com/Clovisindo/GameJam2021/network/members
+[stars-shield]: https://img.shields.io/github/stars/Clovisindo/GameJam2021.svg?style=for-the-badge
+[stars-url]: https://github.com/Clovisindo/GameJam2021/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Clovisindo/GameJam2021.svg?style=for-the-badge
+[issues-url]: https://github.com/Clovisindo/GameJam2021/issues
+[license-shield]: https://img.shields.io/github/license/Clovisindo/GameJam2021.svg?style=for-the-badge
+[license-url]: https://github.com/Clovisindo/GameJam2021/blob/master/license.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/github_username
+[linkedin-url]: https://linkedin.com/in/Clovisindo
