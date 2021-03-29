@@ -34,10 +34,10 @@
   <a href="https://github.com/GameJam2021">
     </a>
 
-  <h3 align="center">GameJam2021</h3>
+  <h3 align="center">Super Dungeon Puzzle Crawler Ultimate Ex</h3>
 
   <p align="center">
-    Roguelike 2D en unity
+    Dungeon crawler mezclado con juego de encontrar parejas de cartas
     <br />
     <a href="https://github.com/Clovisindo/GameJam2021"><strong>Ver documentos »</strong></a>
     <br />
@@ -83,19 +83,18 @@
 <!-- ABOUT THE PROJECT -->
 ## Sobre el projecto
 
-Inicio este proyecto personal de aprendizaje en Unity, con objetivo de trabajar todo el ciclo de desarrollo de principio a fin de un videojuego. El genero a explorar es el roguelike, en la experiencia mas pequeña posible, pero poder practicar y diseñar mecanicas de este genero de forma práctica.
+Proyecto para la Blackthornprod gamejam #3 con el tema "menos es más".
 
-Inspirando por juegos como Binding of Isaac, Spelunky y Hammerwatch, busco crear una pequeña experiencia 'roguelike' de aventuras en una mazmorra, el jugador debe enfrentarse a distintos desafios como monstruos y puzzles para llegar victorioso al final de su aventura.
+El juego tratará sobre un juego de cartas de encuentra las parejas, ambientado en un "dungeon crawler".
+Las parejas que vayas destapando, decidiran las acciones del jugador mientras avanza por la mazmorra:
+Cartas de monstruos: matas a un enemigo de la mazmorra, pero no siempre es buena idea.
+Cartas de mejora: curar al jugador, aumentar su poder de ataque.
+Cartas de desventaja: el jugador pierde vida o ataque.
 
-El objetivo de funcionalidades finales es el siguiente:
-* Un jugador con distintas clases, con al menos dos armas que le den habilidades distintas.
-* Combate cuerpo a cuerpo y a distancia.
-* Variedad de enemigos que impliquen distintos enfoques de desafio para el jugador.
-* Desafios sin combate a través de puzzles con palancas/botones.
-* Habitaciones y tesoros ocultos.
-* Generación dinámica y procedural de los niveles.
-* Dificultad adaptativa en función de las acciones del jugador.
+Necesitas llegar al final de la mazmorra para derrotar al poderoso Liche, pero cuanto más tardes o mas monstruos mates, el Liche se volverá más poderoso.
+La dificultad del juego escala en cada nivel por las acciones en los niveles anteriores, en resumen cuando mejor seas jugando, evitarás mayores contratiempos.
 
+https://clovisindo.itch.io/super-dungeon-puzzle-crawler-ultimate-ex
 
 Para mas información consulta el resto de la [documentación](https://github.com/Clovisindo/GameJam2021/blob/master/contributing.md).
 
@@ -153,7 +152,7 @@ Distribuido bajo licencia MIT.
 
 Damian - [@Clovisindo](https://twitter.com/Clovisindo) - damianmgbamio@gmail.com
 
-Project Link: [https://github.com/Clovisindo/Unity2dRogueLike](https://github.com/Clovisindo/GameJam2021)
+Project Link: [https://github.com/Clovisindo/GameJam2021](https://github.com/Clovisindo/GameJam2021)
 
 
 <!-- Agradecimientos -->
