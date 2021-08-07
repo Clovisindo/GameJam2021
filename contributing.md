@@ -55,6 +55,9 @@ El juego tratará sobre un juego de cartas de encuentra las parejas, ambientado 
 
 Necesitas llegar al final de la mazmorra para derrotar al poderoso Liche, pero cuanto más tardes o mas monstruos mates, el Liche se volverá más poderoso. La dificultad del juego escala en cada nivel por las acciones en los niveles anteriores, en resumen cuando mejor seas jugando, evitarás mayores contratiempos.
 
+<!-- Diagrama de sistemas -->
+## Diagrama de sistemas
+![image](https://user-images.githubusercontent.com/4136363/128594107-a8bbceba-f3c7-4c8e-ba19-fc7d9e743af3.png)
 
 <!-- Diagrama de clases -->
 ## Diagrama de clases
